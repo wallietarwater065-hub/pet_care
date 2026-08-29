@@ -1,0 +1,573 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --line: rgba(23, 63, 58, .16);
+  --radius: 8px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 bg-foam text-ink;
+    background-image:
+      linear-gradient(90deg, rgba(23, 63, 58, .055) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(23, 63, 58, .055) 1px, transparent 1px);
+    background-size: 48px 48px;
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  section {
+    @apply py-24;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    @apply m-0;
+  }
+}
+
+@layer components {
+  .site-header {
+    @apply fixed inset-x-0 top-0 z-20 flex items-center justify-between gap-5 px-[clamp(18px,4vw,56px)] py-4 text-white;
+    background: linear-gradient(180deg, rgba(13, 38, 35, .74), rgba(13, 38, 35, .06));
+  }
+
+  .brand {
+    @apply flex min-w-max items-center gap-2.5 font-black uppercase tracking-[.08em];
+  }
+
+  .brand-mark {
+    @apply h-[34px] w-[34px] rounded-full border-2 border-white/80 bg-white/10;
+    background-image:
+      radial-gradient(circle at 50% 64%, white 0 4px, transparent 5px),
+      radial-gradient(circle at 37% 42%, white 0 4px, transparent 5px),
+      radial-gradient(circle at 63% 42%, white 0 4px, transparent 5px),
+      radial-gradient(circle at 27% 30%, white 0 3px, transparent 4px),
+      radial-gradient(circle at 73% 30%, white 0 3px, transparent 4px);
+  }
+
+  .nav {
+    @apply flex items-center gap-[clamp(12px,2vw,30px)] text-sm font-bold;
+  }
+
+  .nav a {
+    @apply opacity-90 transition-opacity hover:opacity-100 focus-visible:opacity-100;
+  }
+
+  .hero {
+    @apply relative grid min-h-[92vh] items-end overflow-hidden bg-deep text-white;
+  }
+
+  .hero::before {
+    @apply absolute inset-0 content-[''];
+    background:
+      linear-gradient(90deg, rgba(9, 31, 29, .82) 0%, rgba(9, 31, 29, .56) 34%, rgba(9, 31, 29, .12) 67%),
+      linear-gradient(0deg, rgba(9, 31, 29, .38), transparent 42%),
+      url("/assets/pet-grooming-hero.png") center / cover;
+    transform: scale(1.01);
+  }
+
+  .hero-content {
+    @apply relative z-[1] mx-auto w-[min(1120px,calc(100%-36px))] pb-14 pt-32;
+  }
+
+  .kicker,
+  .eyebrow {
+    @apply text-[13px] font-extrabold uppercase tracking-[.16em];
+  }
+
+  .kicker {
+    @apply mb-5 inline-flex items-center gap-2.5 text-white/90;
+  }
+
+  .kicker::before {
+    @apply h-0.5 w-11 bg-sun content-[''];
+  }
+
+  h1 {
+    @apply max-w-[720px] text-[clamp(46px,8vw,104px)] font-black leading-[.96] tracking-[0];
+    font-family: "Microsoft JhengHei UI", "Microsoft YaHei", sans-serif;
+  }
+
+  h2 {
+    @apply text-[clamp(30px,4vw,56px)] font-black leading-tight tracking-[0] text-deep;
+  }
+
+  h3 {
+    @apply text-[22px] font-black leading-snug text-deep;
+  }
+
+  .hero-text {
+    @apply mt-6 max-w-[570px] text-[clamp(17px,2vw,22px)] text-white/90;
+  }
+
+  .hero-actions {
+    @apply mt-8 flex flex-wrap gap-3;
+  }
+
+  .btn {
+    @apply inline-flex min-h-12 cursor-pointer items-center justify-center rounded-studio border border-transparent px-5 py-3 font-black transition;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    @apply bg-sun text-[#142724] shadow-[0_14px_34px_rgba(244,201,109,.28)];
+  }
+
+  .btn-secondary {
+    @apply border-white/55 bg-white/10 text-white backdrop-blur;
+  }
+
+  .btn:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  a:focus-visible {
+    @apply outline outline-4 outline-offset-4 outline-sun/70;
+  }
+
+  .quick-strip {
+    @apply mx-auto -mt-9 grid w-[min(1120px,calc(100%-36px))] grid-cols-4 overflow-hidden rounded-studio bg-white shadow-studio;
+    position: relative;
+    z-index: 3;
+  }
+
+  .quick-item {
+    @apply border-r border-[var(--line)] p-6 last:border-r-0;
+  }
+
+  .quick-label {
+    @apply block text-xs font-extrabold uppercase tracking-[.14em] text-steel;
+  }
+
+  .quick-value {
+    @apply mt-2 block text-[20px] font-black text-deep;
+  }
+
+  .wrap {
+    @apply mx-auto w-[min(1120px,calc(100%-36px))];
+  }
+
+  .section-head {
+    @apply mb-10 grid grid-cols-[1fr_minmax(240px,390px)] items-end gap-8;
+  }
+
+  .eyebrow {
+    @apply mb-3 text-coral;
+  }
+
+  .section-copy {
+    @apply text-[17px] text-steel;
+  }
+
+  .services-grid {
+    @apply grid grid-cols-3 gap-5;
+  }
+
+  .service-card,
+  .price-card,
+  .review-card,
+  .contact-box,
+  form {
+    @apply rounded-studio border border-[var(--line)] bg-white;
+  }
+
+  .service-card {
+    @apply flex min-h-[310px] flex-col justify-between p-7 shadow-[0_16px_42px_rgba(23,63,58,.09)];
+  }
+
+  .service-top {
+    @apply flex items-start gap-4;
+  }
+
+  .service-icon {
+    @apply grid h-12 w-12 shrink-0 place-items-center rounded-studio bg-tile text-2xl font-black text-deep;
+  }
+
+  .service-card p {
+    @apply mt-5 text-steel;
+  }
+
+  .service-tags {
+    @apply mt-7 flex flex-wrap gap-2;
+  }
+
+  .service-tags span {
+    @apply rounded-studio bg-foam px-3 py-1.5 text-xs font-extrabold text-deep;
+  }
+
+  .process {
+    @apply bg-deep text-white;
+  }
+
+  .process h2,
+  .process h3 {
+    @apply text-white;
+  }
+
+  .process .section-copy {
+    @apply text-[22px] leading-relaxed text-white/80;
+  }
+
+  .wash-line {
+    @apply grid grid-cols-4 gap-px overflow-hidden rounded-studio bg-white/20;
+  }
+
+  .step {
+    @apply bg-deep p-7;
+  }
+
+  .step span {
+    @apply mb-20 block text-sm font-black tracking-[.18em] text-sun;
+  }
+
+  .step p {
+    @apply mt-3 text-white/70;
+  }
+
+  .prices-layout {
+    @apply grid grid-cols-[.8fr_1.4fr] gap-5;
+  }
+
+  .price-note {
+    @apply rounded-studio bg-tile p-8 text-deep;
+  }
+
+  .price-note p {
+    @apply mt-5 text-deep/75;
+  }
+
+  .price-grid {
+    @apply grid grid-cols-2 gap-5;
+  }
+
+  .price-card {
+    @apply p-6;
+  }
+
+  .price {
+    @apply mb-4 text-[42px] font-black leading-none text-coral;
+  }
+
+  .price small {
+    @apply text-base text-steel;
+  }
+
+  .price-card ul {
+    @apply mb-0 mt-5 list-none space-y-2 p-0 text-steel;
+  }
+
+  .price-card li::before {
+    @apply mr-2 text-mint content-['•'];
+  }
+
+  .environment {
+    @apply bg-[#edf7f1];
+  }
+
+  .environment-shell {
+    @apply grid grid-cols-[1.35fr_.65fr] overflow-hidden rounded-studio bg-deep shadow-studio;
+  }
+
+  .environment-stage {
+    @apply relative min-h-[560px] overflow-hidden;
+  }
+
+  .environment-slide {
+    @apply absolute inset-0 m-0 opacity-0 transition-opacity duration-700;
+  }
+
+  .environment-slide.is-active {
+    @apply opacity-100;
+  }
+
+  .environment-slide img {
+    @apply h-full w-full object-cover;
+  }
+
+  .environment-caption {
+    @apply absolute inset-x-6 bottom-6 rounded-studio bg-white/90 p-5 text-deep backdrop-blur;
+  }
+
+  .environment-caption p {
+    @apply mt-2 text-steel;
+  }
+
+  .environment-panel {
+    @apply flex flex-col justify-between gap-8 p-8 text-white;
+  }
+
+  .environment-panel h2 {
+    @apply text-white;
+  }
+
+  .environment-panel p:not(.eyebrow) {
+    @apply mt-4 text-white/70;
+  }
+
+  .environment-controls {
+    @apply flex items-center justify-between gap-5;
+  }
+
+  .environment-arrows {
+    @apply flex gap-2;
+  }
+
+  .environment-btn {
+    @apply grid h-12 w-12 place-items-center rounded-studio border border-white/30 bg-white/10 text-3xl leading-none text-white transition hover:bg-white/20;
+  }
+
+  .environment-dots {
+    @apply flex gap-2;
+  }
+
+  .environment-dot {
+    @apply h-3 w-3 rounded-full border border-white/40 bg-white/20 transition;
+  }
+
+  .environment-dot.is-active {
+    @apply w-9 rounded-studio bg-sun;
+  }
+
+  .reviews {
+    @apply grid grid-cols-3 gap-5;
+  }
+
+  .review-card {
+    @apply p-7;
+  }
+
+  .reviewer {
+    @apply mt-8 flex items-center justify-between gap-4 border-t border-[var(--line)] pt-5 font-black text-deep;
+  }
+
+  .rating {
+    @apply rounded-studio bg-sun px-3 py-1 text-sm;
+  }
+
+  .booking {
+    @apply pt-10;
+  }
+
+  .booking-panel {
+    @apply grid grid-cols-[.95fr_1.05fr] gap-5;
+  }
+
+  .booking-info {
+    @apply grid gap-5;
+  }
+
+  .contact-box {
+    @apply p-7;
+  }
+
+  .contact-list {
+    @apply mb-0 mt-7 list-none space-y-4 p-0;
+  }
+
+  .contact-list li {
+    @apply grid grid-cols-[70px_1fr] gap-4 text-deep;
+  }
+
+  .contact-list span {
+    @apply text-xs font-extrabold uppercase tracking-[.14em] text-steel;
+  }
+
+  .store-map {
+    @apply relative m-0 overflow-hidden rounded-studio border border-[var(--line)] bg-white;
+  }
+
+  .store-map img {
+    @apply h-[330px] w-full object-cover;
+  }
+
+  .store-map-label {
+    @apply absolute bottom-5 left-5 max-w-[260px] rounded-studio bg-white/90 p-4 shadow-[0_12px_32px_rgba(23,63,58,.16)] backdrop-blur;
+  }
+
+  .store-map-label span {
+    @apply text-xs font-black uppercase tracking-[.14em] text-coral;
+  }
+
+  .store-map-label strong {
+    @apply mt-1 block text-xl text-deep;
+  }
+
+  .store-map-label p {
+    @apply mt-1 text-sm text-steel;
+  }
+
+  form {
+    @apply grid grid-cols-2 gap-4 p-7;
+  }
+
+  label {
+    @apply grid gap-2 text-sm font-black text-deep;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply min-h-12 rounded-studio border border-[var(--line)] bg-foam px-4 py-3 font-normal text-ink outline-none;
+  }
+
+  textarea {
+    @apply min-h-32 resize-y;
+  }
+
+  .wide {
+    @apply col-span-2;
+  }
+
+  .form-note {
+    @apply text-sm text-steel;
+  }
+
+  .site-footer {
+    @apply bg-deep px-[clamp(18px,4vw,56px)] py-8 text-white;
+  }
+
+  .footer-inner {
+    @apply mx-auto flex w-[min(1120px,100%)] justify-between gap-5 text-sm text-white/75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+@media (max-width: 900px) {
+  section {
+    @apply py-16;
+  }
+
+  .site-header {
+    @apply static bg-deep text-white;
+  }
+
+  .nav {
+    @apply hidden;
+  }
+
+  .hero {
+    @apply min-h-[720px];
+  }
+
+  .quick-strip,
+  .services-grid,
+  .wash-line,
+  .prices-layout,
+  .price-grid,
+  .environment-shell,
+  .reviews,
+  .booking-panel {
+    @apply grid-cols-1;
+  }
+
+  .quick-strip {
+    @apply mt-0;
+  }
+
+  .quick-item {
+    @apply border-b border-r-0 last:border-b-0;
+  }
+
+  .section-head {
+    @apply grid-cols-1 items-start;
+  }
+
+  .environment-stage {
+    @apply min-h-[430px];
+  }
+
+  .step span {
+    @apply mb-10;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header {
+    @apply px-5;
+  }
+
+  .hero-content,
+  .wrap,
+  .quick-strip {
+    @apply w-[calc(100%-28px)];
+  }
+
+  .hero {
+    @apply min-h-[680px];
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(9, 31, 29, .34) 0%, rgba(9, 31, 29, .86) 78%),
+      url("/assets/pet-grooming-hero.png") center / cover;
+  }
+
+  .hero-actions,
+  .environment-controls,
+  .footer-inner {
+    @apply flex-col items-stretch;
+  }
+
+  .btn {
+    @apply w-full;
+  }
+
+  .service-card,
+  .price-note,
+  .price-card,
+  .review-card,
+  .contact-box,
+  form,
+  .environment-panel {
+    @apply p-5;
+  }
+
+  form {
+    @apply grid-cols-1;
+  }
+
+  .wide {
+    @apply col-span-1;
+  }
+}
