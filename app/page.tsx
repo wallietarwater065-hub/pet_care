@@ -212,6 +212,7 @@ export default function Home() {
                 <label>联系电话<input type="tel" name="phone" placeholder="用于确认预约" autoComplete="tel" /></label>
                 <label>宠物类型<select name="pet"><option>小型犬</option><option>中大型犬</option><option>猫咪</option><option>其他</option></select></label>
                 <label>想预约的项目<select name="service"><option>犬猫精洗</option><option>造型修剪</option><option>皮毛护理</option><option>单项护理</option></select></label>
+                <label className="wide">期望到店时间<input type="datetime-local" name="arrivalTime" /></label>
                 <label className="wide">补充说明<textarea name="message" placeholder="可以写宠物体重、毛结情况、是否怕吹风等" /></label>
                 <p className="form-note wide">提交后门店会在营业时间内联系确认。此静态页面不会真的发送信息，可接入你的表单服务。</p>
                 <button className="btn btn-primary wide" type="submit">发送预约信息</button>
